@@ -1,7 +1,5 @@
 
-### welcome_assignment_answers
-### Input - All eight questions given in the assignment.
-### Output - The right answer for the specific question.
+
 
 def welcome_assignment_answers(question):
     #The student doesn't have to follow the skeleton for this assignment.
@@ -27,10 +25,3 @@ def welcome_assignment_answers(question):
 
     return(answer)
 
-# Complete all the questions.
-
-
-if __name__ == "__main__":
-    #use this space to debug and verify that the program works
-    debug_question = "What layer from the TCP/IP model the protocol DHCP belongs to? - The answer should be a numeric number"
-    print(welcome_assignment_answers(debug_question))
