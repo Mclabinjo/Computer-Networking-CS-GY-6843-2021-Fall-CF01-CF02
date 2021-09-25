@@ -1,34 +1,55 @@
-### welcome_assignment_answers
-### Input - All eight questions given in the assignment.
-### Output - The right answer for the specific question.
+# Import socket module
+from socket import *
 
-def welcome_assignment_answers(question):
-    #The student doesn't have to follow the skeleton for this assignment.
-    #Another way to implement is using a "case" statements similar to C.
-    if question ==  "In Slack, what is the secret passphrase posted in the #cyberfellows-computernetworking-fall2021 channel posted by a TA?":
-        answer = "mTLS"
-    elif question == "Are encoding and encryption the same? - Yes/No":
-        answer = "No"
-    elif question == "Is it possible to decrypt a message without a key? - Yes/No":
-        answer = "No"
-    elif question == "Is it possible to decode a message without a key? - Yes/No":
-        answer = "Yes"
-    elif question == "Is a hashed message supposed to be un-hashed? - Yes/No":
-        answer = "No"
-    elif question == "What is the MD5 hashing value to the following message: 'NYU Computer Networking' - Use MD5 hash generator and use the answer in your code":
-        answer = "42b76fe51778764973077a5a94056724"
-    elif question == "Is MD5 a secured hashing algorithm? - Yes/No":
-        answer = "No"
-    elif question == "What layer from the TCP/IP model the protocol DHCP belongs to? - The answer should be a numeric number":
-        answer = 5
-    elif question == "What layer of the TCP/IP model the protocol TCP belongs to? - The answer should be a numeric number":
-        answer = 4
-    return (answer)
-# Complete all the questions.
+# Create a TCP server socket
+# (AF_INET is used for IPv4 protocols)
+# (SOCK_STREAM is used for TCP)
+serverPort = 6789
+serverSocket = socket(AF_INET, SOCK_STREAM)
 
+# Prepare a sever socket
+# Fill in start
+serverSocket.bind(('', serverPort))
+serverSocket.listen(1)
+print ('the web server is up on port:', serverPort)
+# Fill in end
 
+while True:
+    # Establish the connection
 
+    print ('Ready to serve...')
 
+    # Set up a new connection from the client
+    connectionSocket, addr = serverSocket.accept()  # Fill in start   #Fill in end
 
+    try:
 
+        message = connectionSocket.recv(1024)  # Fill in start #Fill in end
 
+        filename = message.split()[1]
+
+        f = open(filename[1:])
+
+        outputdata = f.read()  # Fill in start #Fill in end
+        print (outputdata)
+        # Send one HTTP header line into socket
+        # Fill in start#
+        connectionSocket.send('\nHTTP/1.1 200 OK\n\n'.encode())
+        # Fill in end
+
+        # Send the content of the requested file to the connection socket
+        for i in range(0, len(outputdata)):
+            connectionSocket.send(outputdata[i].encode())
+        connectionSocket.send("\r\n".encode())
+        connectionSocket.close()
+
+    except IOError:
+        # Send HTTP response message for file not found
+        # Fill in start
+        connectionSocket.send("\nHTTP/1.1 404 Not Found\n\n".encode())
+        # Fill in end
+        # Close the client connection socket
+        # Fill in start
+        connectionSocket.close()
+    # Fill in end
+serverSocket.close()
