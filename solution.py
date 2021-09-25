@@ -17,7 +17,7 @@ print ('the web server is up on port:', serverPort)
 while True:
     # Establish the connection
 
-    print ('Ready to serve...')
+  #  print ('Ready to serve...')
 
     # Set up a new connection from the client
     connectionSocket, addr = serverSocket.accept()  # Fill in start   #Fill in end
