@@ -75,7 +75,6 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send QUIT command and get server response.
     # Fill in start
     quitCommand = 'Quit\r\n'
-    print(quitCommand)
     clientSocket.send(quitCommand)
     recv1 = clientSocket.recv(1024)
     print(recv1)
@@ -85,7 +84,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.close()
 
 
-
-
-if __name__ == '__main__':
+if __name__ != '__main__':
+    pass
+else:
     smtp_client(1025, '127.0.0.1')
