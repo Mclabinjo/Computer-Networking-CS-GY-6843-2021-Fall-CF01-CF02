@@ -13,7 +13,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientsocket.connect((mailserver, mailport))
 
     # Fill in start
-    # Fill in end
+    # Fill in e nd
 
     recv = clientsocket.recv(1025).decode()
     print(recv)
