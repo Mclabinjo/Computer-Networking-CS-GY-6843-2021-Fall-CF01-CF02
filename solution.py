@@ -70,7 +70,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     message = raw_input("Enter your message: hi \r\n")
     clientsocket.send(message.encode())
     clientsocket.send(endmsg.encode())
-    #print("Response after sending message body:" + recv_msg.decode())
+    mailmessageend ='\r\n.\r\n'
+    clientsocket.send( message + mailmessageend)
     #if recv1[:3] != '250':
         #print('250 reply not received from server.')
     # Fill in end
