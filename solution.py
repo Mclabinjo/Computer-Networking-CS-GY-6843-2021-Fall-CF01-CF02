@@ -7,7 +7,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
     mailServer = 'smtp.nyu.edu'
-    mailPort = 1025
+    mailPort = 25
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((mailServer, mailPort))
@@ -17,7 +17,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     recv = clientSocket.recv(1025).decode()
     print(recv)
-   # if recv[:3] != '220':
+    #if recv[:3] != '220':
         #print('220 reply not received from server.')
 
     # Send HELO command and print server response.
@@ -25,8 +25,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(heloCommand.encode())
     recv1 = clientSocket.recv(1025).decode()
     print(recv1)
-   # if recv1[:3] != '250':
-       # print('250 reply not received from server.')
+    #if recv1[:3] != '250':
+        #print('250 reply not received from server.')
 
     # Send MAIL FROM command and print server response.
     # Fill in start
@@ -45,7 +45,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(rcpttoCommand)
     recv1 = clientSocket.recv(1025)
     print(recv1)
-   # if recv1[:3] != '250':
+    #if recv1[:3] != '250':
         #print('rcpt to 250 reply not received from server.')
 
     # Fill in end
@@ -68,8 +68,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(data + mailMessageEnd)
     recv1 = clientSocket.recv(1025)
     print(recv1)
-   # if recv1[:3] != '250':
-       # print('end msg 250 reply not received from server.')
+    #if recv1[:3] != '250':
+        #print('end msg 250 reply not received from server.')
     # Fill in end
 
     # Send QUIT command and get server response.
@@ -80,12 +80,10 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv1 = clientSocket.recv(1025)
     print(recv1)
     #if recv1[:3] != '250':
-       # print('quit 250 reply not received from server.')
+        #print('end msg 250 reply not received from server.')
 
     clientSocket.close()
 
 
-if __name__ != '__main__':
-
-
+if __name__ == '__main__':
     smtp_client(1025, '127.0.0.1')
