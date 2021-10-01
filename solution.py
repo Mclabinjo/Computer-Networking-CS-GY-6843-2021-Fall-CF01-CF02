@@ -6,7 +6,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     endmsg = "\r\n.\r\n"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
-    mailserver = 'localhost'
+    mailserver = '127.0.0.1:1025'
     mailport = 25
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientsocket = socket(AF_INET, SOCK_STREAM)
@@ -31,7 +31,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send MAIL FROM command and print server response.
     # Fill in start
     mailfromcommand = "MAIL FROM: <ol2089@nyu.edu>\r\n"
-    clientsocket.send(mailfromcommand)
+    clientsocket.send(mailfromcommand.encode())
     recv1 = clientsocket.recv(1025)
     print(recv1)
     #if recv1[:3] != '250':
@@ -42,7 +42,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send RCPT TO command and print server response.
     # Fill in start
     rcpttocommand = 'RCPT TO: <ol2089@nyu.edu>\r\n'
-    clientsocket.send(rcpttocommand)
+    clientsocket.send(rcpttocommand.encode())
     recv1 = clientsocket.recv(1025)
     print(recv1)
     #if recv1[:3] != '250':
@@ -71,7 +71,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientsocket.send(message.encode())
     clientsocket.send(endmsg.encode())
     recv_msg = clientsocket.recv(1025)
-    print("Response after sending message body:" + recv_msg.decode())
+    print msg
     if recv1[:3] != '250':
         print('250 reply not received from server.')
     # Fill in end
