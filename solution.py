@@ -30,7 +30,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send MAIL FROM command and print server response.
     # Fill in start
-    mailfromcommand = 'MAIL FROM: <ol2089@nyu.edu>\r\n'
+    mailfromcommand = "MAIL FROM: <ol2089@nyu.edu>\r\n"
     clientsocket.send(mailfromcommand)
     recv1 = clientsocket.recv(1025)
     print(recv1)
@@ -42,7 +42,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send RCPT TO command and print server response.
     # Fill in start
     rcpttocommand = 'RCPT TO: <ol2089@nyu.edu>\r\n'
-    clientsocket.recvfrom(rcpttocommand)
+    clientsocket.send(rcpttocommand)
     recv1 = clientsocket.recv(1025)
     print(recv1)
     #if recv1[:3] != '250':
