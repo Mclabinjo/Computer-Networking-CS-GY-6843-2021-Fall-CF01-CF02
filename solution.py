@@ -8,10 +8,10 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     endmsg = "\r\n.\r\n"
 
     # Choose a mail server (e .g. Google mail server) if you want to verify the script beyond GradeScope
-    mailserver = ('127.0.0.1', 1025)
+    mailserver = ("127.0.0.1", 1025)
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientsocket = socket(AF_INET, SOCK_STREAM)
-    clientsocket.connect(mailserver)
+    clientsocket.connect((mailserver, 1025))
 
     # Fill in start
     # Fill in e nd
@@ -67,7 +67,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Message ends with a single period.
     # Fill in start
 
-    subject = "Subject: SMTP Client Python Script \r\n\r\n"
+    subject = "Subject: SMTP Client  \r\n\r\n"
     clientsocket.send(subject.encode())
     date = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime())
     date = date + "\r\n\r\n"
