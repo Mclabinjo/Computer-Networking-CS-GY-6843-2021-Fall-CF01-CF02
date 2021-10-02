@@ -9,7 +9,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Choose a mail server (e .g. Google mail server) if you want to verify the script beyond GradeScope
     mailserver = '127.0.0.1'
-    mailport = 1025
+    mailport = 25
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientsocket = socket(AF_INET, SOCK_STREAM)
     clientsocket.connect((mailserver, mailport))
@@ -83,15 +83,11 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send QUIT command and get server response.
     # Fill in start
-    quitcommand = 'quit\r\n'
-
-    clientsocket.send(quitcommand)
-    recv1 = clientsocket.recv(1024)
-    print(recv1)
+    clientsocket.send("QUIT\r\n".encode())
+    message = clientsocket.recv(1024).decode()
+    print (message)
+    clientsocket.close()
     #if recv1[:3] != '250':
         #print('end msg 250 reply not received from server.')
-
-    clientsocket.close()
-
 
 
