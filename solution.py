@@ -33,7 +33,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in start
     mailfromcommand = "MAIL FROM: <ol2089@nyu.edu>\r\n"
     clientsocket.send(mailfromcommand.encode())
-    recv2 = clientsocket.recv(1024)
+    recv1 = clientsocket.recv(1024)
     # print(recv2)
     # if recv2[:3] != '250':
     # print('mail from 250 reply not received from server.')
@@ -44,7 +44,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in start
     rcpttocommand = 'RCPT TO: <mayowa.labinjo@yahoo.com>\r\n'
     clientsocket.send(rcpttocommand.encode())
-    recv3 = clientsocket.recv(1024).decode()
+    recv1 = clientsocket.recv(1024).decode()
     # print(recv3)
     # if recv3[:3] != '250':
     # print('rcpt to 250 reply not received from server.')
@@ -55,7 +55,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in start
     data = "DATA\r\n"
     clientsocket.send(data.encode())
-    recv4 = clientsocket.recv(1024).decode()
+    recv1 = clientsocket.recv(1024).decode()
 
     # print("After DATA command: " + recv4)
     # if recv1[:3] != '250':
@@ -70,7 +70,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientsocket.send(msg.encode())
 
     clientsocket.send(endmsg.encode())
-    recv6 = clientsocket.recv(1024).decode()
+    recv1 = clientsocket.recv(1024).decode()
     #print("Response after sending message body:" + recv_msg.decode())
     # if recv1[:3] != '250':
     # print('250 reply not received from server.')
@@ -81,8 +81,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     quit = 'QUIT\r\n'
     clientsocket.send(quit.encode())
     message = clientsocket.recv(1024).decode()
-    recv7 = clientsocket.recv(1024).decode()
-    #print (recv7)
+    recv1 = clientsocket.recv(1024).decode()
+    #print (recv1)
 
     # if recv1[:3] != '250':
     # print('end msg 250 reply not received from server.')
